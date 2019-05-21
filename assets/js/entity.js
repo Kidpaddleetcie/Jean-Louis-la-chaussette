@@ -2,44 +2,44 @@ document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[0]
 
 
 // On gère l'intensité
-let arrayFRAME;
-let valuesFRAME;
-let lengthFRAME;
-let averageFRAME;
+let array;
+let values;
+let length;
+let average;
 
 navigator.mediaDevices.getUserMedia({ audio: true, video: false })
     .then(function(stream) {
-        audioContextFRAME = new AudioContext();
-        analyserFRAME = audioContext.createAnalyser();
-        microphoneFRAME = audioContext.createMediaStreamSource(stream);
-        javascriptNodeFRAME = audioContext.createScriptProcessor(2048, 1, 1);
+        audioContext = new AudioContext();
+        analyser = audioContext.createAnalyser();
+        microphone = audioContext.createMediaStreamSource(stream);
+        javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
-        analyserFRAME.smoothingTimeConstant = 0.8;
-        analyserFRAME.fftSize = 1024;
+        analyser.smoothingTimeConstant = 0.8;
+        analyser.fftSize = 1024;
 
-        microphoneFRAME.connect(analyserFRAME);
-        analyserFRAME.connect(javascriptNodeFRAME);
-        javascriptNodeFRAME.connect(audioContext.destination);
-        javascriptNodeFRAME.onaudioprocess = function() {
-            arrayFRAME = new Uint8Array(analyser.frequencyBinCount);
-            analyserFRAME.getByteFrequencyData(arrayFRAME);
-            valuesFRAME = 0;
+        microphone.connect(analyser);
+        analyser.connect(javascriptNode);
+        javascriptNode.connect(audioContext.destination);
+        javascriptNode.onaudioprocess = function() {
+            array = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(array);
+            values = 0;
 
-            lengthFRAME = array.length;
+            length = array.length;
             for (let i = 0; i < length; i++) {
-                valuesFRAME += (arrayFRAME[i]);
+                values += (array[i]);
             }
 
-            averageFRAME = valuesFRAME / lengthFRAME;
-            if (averageFRAME < 20) {
+            average = values / length;
+            if (average < 20) {
                 document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[0].image + '"/>';
-            } else if (averageFRAME > 20 && averageFRAME < 40) {
+            } else if (average > 20 && average < 40) {
                 document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[1].image + '"/>';
-            } else if (averageFRAME > 40 && averageFRAME < 60) {
+            } else if (average > 40 && average < 60) {
                 document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[2].image + '"/>';
-            } else if (averageFRAME > 60 && averageFRAME < 80) {
+            } else if (average > 60 && average < 80) {
                 document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[3].image + '"/>';
-            } else if (averageFRAME > 80 && averageFRAME < 100) {
+            } else if (average > 80 && average < 100) {
                 document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[4].image + '"/>';
             } else {
                 document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[5].image + '"/>';
