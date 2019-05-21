@@ -1,4 +1,4 @@
-dragElement(document.getElementById("JLLC"));
+dragElement(document.getElementById("JLLCmove"));
 
 function dragElement(elmnt) {
     let pos1 = 0,

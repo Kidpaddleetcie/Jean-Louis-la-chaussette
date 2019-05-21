@@ -1,4 +1,4 @@
-document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[0].image + '"/>';
+document.getElementById("JLLC").innerHTML = '<img class="JLLC" id="JLLCmove" src="' + frame[0].image + '"/>';
 
 
 // On gère l'intensité
@@ -32,17 +32,17 @@ navigator.mediaDevices.getUserMedia({ audio: true, video: false })
 
             average = values / length;
             if (average < 20) {
-                document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[0].image + '"/>';
+                document.getElementById("JLLC").innerHTML = '<img id="JLLCmove" class="JLLC" src="' + frame[0].image + '"/>';
             } else if (average > 20 && average < 40) {
-                document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[1].image + '"/>';
+                document.getElementById("JLLC").innerHTML = '<img id="JLLCmove" class="JLLC" src="' + frame[1].image + '"/>';
             } else if (average > 40 && average < 60) {
-                document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[2].image + '"/>';
+                document.getElementById("JLLC").innerHTML = '<img id="JLLCmove" class="JLLC" src="' + frame[2].image + '"/>';
             } else if (average > 60 && average < 80) {
-                document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[3].image + '"/>';
+                document.getElementById("JLLC").innerHTML = '<img id="JLLCmove" class="JLLC" src="' + frame[3].image + '"/>';
             } else if (average > 80 && average < 100) {
-                document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[4].image + '"/>';
+                document.getElementById("JLLC").innerHTML = '<img id="JLLCmove" class="JLLC" src="' + frame[4].image + '"/>';
             } else {
-                document.getElementById("JLLC").innerHTML = '<img class="JLLC" src="' + frame[5].image + '"/>';
+                document.getElementById("JLLC").innerHTML = '<img id="JLLCmove" class="JLLC" src="' + frame[5].image + '"/>';
             }
 
         }
